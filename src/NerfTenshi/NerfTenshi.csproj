@@ -22,7 +22,7 @@
   </ItemGroup>
 	
   <ItemGroup>
-      <Publicize Include="LBoL.Base;LBoL.ConfigData;LBoL.Core;LBoL.EntityLib;LBoL.Presentation;Untitled.ConfigDataBuilder.Base" IncludeCompilerGeneratedMembers="false" IncludeVirtualMembers="false"/>
+      <Publicize Include="LBoL.Base;LBoL.ConfigData;LBoL.Core;LBoL.EntityLib;LBoL.Presentation;Untitled.ConfigDataBuilder.Base" IncludeCompilerGeneratedMembers="false" IncludeVirtualMembers="false" />
   </ItemGroup>
 	
   <PropertyGroup>
@@ -32,6 +32,9 @@
 
 
   <ItemGroup>
+    <Reference Include="LBoL-AddWatermark">
+      <HintPath>..\..\..\LBoL-DebugMode\src\LBoL-AddWatermark\LBoL-AddWatermark.dll</HintPath>
+    </Reference>
     <Reference Include="LBoL.Base">
       <HintPath>$(GameFolder)\LBoL_Data\Managed\LBoL.Base.dll</HintPath>
     </Reference>

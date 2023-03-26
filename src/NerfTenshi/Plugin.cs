@@ -117,10 +117,12 @@ using Untitled.ConfigDataBuilder.Base;
 using Debug = UnityEngine.Debug;
 
 
-namespace PluginNamespace
+namespace NerfTenshi
 {
     // BePinEx attributes required for BePinEx to load the plugin in the first place
     [BepInPlugin(GUID, "Reduce Tenshi's spellcard damage", version)]
+    // conditional dependency for watermark
+    [BepInDependency(AddWatermark.API.GUID, BepInDependency.DependencyFlags.SoftDependency)]
     [BepInProcess("LBoL.exe")]
     public class Plugin : BaseUnityPlugin
     {
@@ -144,6 +146,9 @@ namespace PluginNamespace
 
             harmony.PatchAll();
 
+            // an example how to add conditional dependency which almost always work
+            if (BepInEx.Bootstrap.Chainloader.PluginInfos.ContainsKey(AddWatermark.API.GUID))
+                WatermarkWrapper.ActivateWatermark();
         }
 
         private void OnDestroy()
