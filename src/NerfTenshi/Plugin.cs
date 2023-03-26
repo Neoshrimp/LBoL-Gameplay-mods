@@ -155,7 +155,7 @@ namespace PluginNamespace
 
 
         // indicates that this type defines a Harmony patch
-        // in this cases, it targets GameEntry.StartAsync method meaning the patch will add some logic to the said method
+        // in this case, it targets GameEntry.StartAsync method meaning the patch will add some logic to the said method
         // originally GameEntry.StartAsync was a private method making the 'GameEntry.StartAsync' symbol illegal 
         // but thanks to assembly publicizer it can easily be accessed without use of reflection
         [HarmonyPatch(typeof(GameEntry), nameof(GameEntry.StartAsync))]
