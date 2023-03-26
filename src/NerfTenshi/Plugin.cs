@@ -119,6 +119,7 @@ using Debug = UnityEngine.Debug;
 
 namespace PluginNamespace
 {
+    // BePinEx attributes required for BePinEx to load the plugin in the first place
     [BepInPlugin(GUID, "Reduce Tenshi's spellcard damage", version)]
     [BepInProcess("LBoL.exe")]
     public class Plugin : BaseUnityPlugin
@@ -130,6 +131,9 @@ namespace PluginNamespace
 
         internal static BepInEx.Logging.ManualLogSource log;
 
+        
+        // BaseUnityPlugin extends MonoBehaviour so any MonoBehaviour message method
+        // like Update, FixedUpdate and so on can be used
         private void Awake()
         {
             log = Logger;
@@ -144,12 +148,16 @@ namespace PluginNamespace
 
         private void OnDestroy()
         {
+            // needed for BePinEx scriptengine
             if (harmony != null)
                 harmony.UnpatchSelf();
         }
 
 
-
+        // indicates that this type defines a Harmony patch
+        // in this cases, it targets GameEntry.StartAsync method meaning the patch will add some logic to the said method
+        // originally GameEntry.StartAsync was a private method making the 'GameEntry.StartAsync' symbol illegal 
+        // but thanks to assembly publicizer it can easily be accessed without use of reflection
         [HarmonyPatch(typeof(GameEntry), nameof(GameEntry.StartAsync))]
         class ConfigData_Patch
         {
@@ -165,13 +173,19 @@ namespace PluginNamespace
                     return null;
                 return (int?)Math.Max((Math.Max((int)dmg+mod, 1)* mul), 1);   
             }
+
+            // code in static Postfix method is appended to end of the targeted method, effectively
+            // executing it every time after the target method is called
+            // GameEntry.StartAsync is called only once (I think) after the game has started to initialize all the data 
             static public void Postfix()
             {
                 var tenshiId = "Tianzi";
                 var tenshiConfig = EnemyUnitConfig.FromId(tenshiId);
 
+                // after original values have been loaded, they can be modified however we want
                 if (tenshiConfig != null)
                 {
+                   
                     tenshiConfig.Damage3 = ModDmg(tenshiConfig.Damage3, mod: spellcardDamageMod);
                     tenshiConfig.Damage3Hard = ModDmg(tenshiConfig.Damage3Hard, mod: spellcardDamageMod);
                     tenshiConfig.Damage3Lunatic = ModDmg(tenshiConfig.Damage3Lunatic, mod: spellcardDamageMod);
