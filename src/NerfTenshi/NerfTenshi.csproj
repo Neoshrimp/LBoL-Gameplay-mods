@@ -33,7 +33,7 @@
 
   <ItemGroup>
     <Reference Include="LBoL-AddWatermark">
-      <HintPath>..\..\..\LBoL-DebugMode\src\LBoL-AddWatermark\LBoL-AddWatermark.dll</HintPath>
+      <HintPath>..\..\..\LBoL-ModdingTools\src\LBoL-AddWatermark\LBoL-AddWatermark.dll</HintPath>
     </Reference>
     <Reference Include="LBoL.Base">
       <HintPath>$(GameFolder)\LBoL_Data\Managed\LBoL.Base.dll</HintPath>
