@@ -35,9 +35,10 @@ namespace NerfTenshi
 
             harmony.PatchAll();
 
-            // an example how to add conditional dependency which almost always work
+            // an example how to add conditional dependency which almost always works
             if (BepInEx.Bootstrap.Chainloader.PluginInfos.ContainsKey(AddWatermark.API.GUID))
                 WatermarkWrapper.ActivateWatermark();
+
         }
 
         private void OnDestroy()
