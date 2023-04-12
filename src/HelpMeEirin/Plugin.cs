@@ -117,15 +117,13 @@ using Untitled.ConfigDataBuilder.Base;
 using Debug = UnityEngine.Debug;
 
 
-namespace MakeLazyRabbitLazy
+namespace PluginNamespace
 {
-    [BepInPlugin(GUID, "Lazy Lazy Rabbit", version)]
+    [BepInPlugin(GUID, "Help me Eirin!", version)]
     [BepInProcess("LBoL.exe")]
-    [BepInDependency(AddWatermark.API.GUID, BepInDependency.DependencyFlags.SoftDependency)]
-
     public class Plugin : BaseUnityPlugin
     {
-        public const string GUID = "neo.lbol.gameplay.enemies.lazyLazyRabbit";
+        public const string GUID = "neo.lbol.qol.helpMeEirin";
         public const string version = "1.0.0";
 
         private static readonly Harmony harmony = new Harmony(GUID);
@@ -141,9 +139,6 @@ namespace MakeLazyRabbitLazy
             gameObject.hideFlags = HideFlags.HideAndDontSave;
 
             harmony.PatchAll();
-            if (BepInEx.Bootstrap.Chainloader.PluginInfos.ContainsKey(AddWatermark.API.GUID))
-                WatermarkWrapper.ActivateWatermark();
-
 
         }
 
@@ -155,85 +150,13 @@ namespace MakeLazyRabbitLazy
 
 
 
-        [HarmonyPatch(typeof(LazyRabbit))]
-        class LazyRabbit_Patch
+        [HarmonyPatch(typeof(Debut), nameof(Debut.InitVariables))]
+        class Debut_Patch
         {
-            // this whole bit is for 'attaching' field for tracking rabbit's last action
-            class LastMove
+            static void Prefix()
             {
-                public LazyRabbit.MoveType move = LazyRabbit.MoveType.Attack;
-            }
-
-            static ConditionalWeakTable<LazyRabbit, LastMove> wt_lastMove = new ConditionalWeakTable<LazyRabbit, LastMove>();
-
-            [HarmonyPatch(MethodType.Constructor)]
-            [HarmonyPostfix]
-            static void cctor_Postfix(LazyRabbit __instance)
-            {
-                wt_lastMove.Add(__instance, new LastMove());
-            }
-            //---
-
-            // first move is chosen in this method
-            [HarmonyPatch(nameof(LazyRabbit.OnEnterBattle))]
-            [HarmonyPostfix]
-            static void OnEnterBattle_Postfix(LazyRabbit __instance)
-            {
-                if (wt_lastMove.TryGetValue(__instance, out LastMove lastMove))
-                {
-                    lastMove.move = __instance.Next;
-                }
-                else
-                {
-                    log.LogError($"OnEnterBattle_Postfix: {__instance.Name} not in the weak table");
-                }
-            }
-
-            // using random pool for coin flip is a bit of an overkill
-            // alternatively, __instance.EnemyMoveRng.NextFloat(a, b) could be used
-            // all rng related checks should originate from in-run rng source to maintain random event consistency
-
-            static Dictionary<GameDifficulty, RepeatableRandomPool<bool>> difficulty2beLazyPool = new Dictionary<GameDifficulty, RepeatableRandomPool<bool>>()
-            {
-                {GameDifficulty.Easy, new RepeatableRandomPool<bool>() { { true, 0.7f }, { false, 0.3f } } },
-                {GameDifficulty.Normal, new RepeatableRandomPool<bool>() { { true, 0.6f }, { false, 0.4f } } },
-                {GameDifficulty.Hard, new RepeatableRandomPool<bool>() { { true, 0.5f }, { false, 0.5f } } },
-                {GameDifficulty.Lunatic, new RepeatableRandomPool<bool>() { { true, 0.4f }, { false, 0.6f } } }
-            };
-
-
-
-
-            [HarmonyPatch(nameof(LazyRabbit.UpdateMoveCounters))]
-            [HarmonyPostfix]
-            static void UpdateMoveCounters_Postfix(LazyRabbit __instance)
-            {
-                if (wt_lastMove.TryGetValue(__instance, out LastMove lastMove))
-                {
-                    log.LogDebug($"last move: {lastMove.move}");
-
-                    if (lastMove.move != LazyRabbit.MoveType.DoNothing)
-                    {
-                        if (difficulty2beLazyPool[GameMaster.Instance.CurrentGameRun.Difficulty].Sample(__instance.EnemyMoveRng))
-                        {
-                            __instance.Next = LazyRabbit.MoveType.DoNothing;
-                        }
-                    }
-                    // if she did nothing last turn but wants to do nothing naturally
-                    // idk this could end up resulting in very powerful double attack
-                    else if (lastMove.move == LazyRabbit.MoveType.DoNothing && __instance.TurnCounter % 3 == 0)
-                    {
-                        __instance.Next = LazyRabbit.MoveType.Attack;
-                    }
-
-
-                    lastMove.move = __instance.Next;
-                    log.LogDebug($"current move: {lastMove.move}");
-                }
-                else
-                {
-                    log.LogError($"UpdateMoveCounters_Postfix: {__instance.Name} not in the weak table");
-                }
+                if(GameMaster.Instance?.CurrentGameRun != null)
+                    GameMaster.Instance.CurrentGameRun.HasClearBonus = true;
             }
         }
 
