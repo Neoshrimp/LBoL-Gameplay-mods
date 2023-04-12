@@ -119,7 +119,7 @@ using Debug = UnityEngine.Debug;
 
 namespace PluginNamespace
 {
-    [BepInPlugin(GUID, "Help me Eirin!", version)]
+    [BepInPlugin(GUID, "Help me, Eirin!", version)]
     [BepInProcess("LBoL.exe")]
     public class Plugin : BaseUnityPlugin
     {
