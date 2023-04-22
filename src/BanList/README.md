@@ -1,6 +1,6 @@
 ### Ban List
 
-Prevents certain cards from being found/created or from being upgraded.
+Prevents certain cards from being found/created or from being upgraded. Extract `neo-Banlist.zip` at `BepInEx/plugins`. Make sure `BanList.dll` and `BanList.Yaml` are in the same directory.
 
 Banlist is customizable via `BanList.yaml`. The file should contain card one card id per line prefixed with `    - ` . Card name to id mapping can be found at `<GameDirectory>\LBoL_Data\StreamingAssets\Localization\en\Cards.yaml`. After modifying `BanList.yaml`, run the game and check `<GameDirectory>\BepInEx\LogOutput.log` for any potential yaml errors.
 
