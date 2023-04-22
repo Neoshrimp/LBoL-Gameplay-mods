@@ -22,7 +22,7 @@
   </ItemGroup>
 	
   <ItemGroup>
-      <Publicize Include="LBoL.Base;LBoL.ConfigData;LBoL.Core;LBoL.EntityLib;LBoL.Presentation;Untitled.ConfigDataBuilder.Base" IncludeCompilerGeneratedMembers="false" IncludeVirtualMembers="false" />
+      <Publicize Include="LBoL.Base;LBoL.ConfigData;LBoL.Core;LBoL.EntityLib;LBoL.Presentation;Untitled.ConfigDataBuilder.Base" IncludeCompilerGeneratedMembers="false" IncludeVirtualMembers="true" />
   </ItemGroup>
 	
   <PropertyGroup>
@@ -73,6 +73,9 @@
     </Reference>
     <Reference Include="YamlDotNet">
         <HintPath>$(GameFolder)\LBoL_Data\Managed\YamlDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+        <HintPath>$(GameFolder)\LBoL_Data\Managed\Unity.TextMeshPro.dll</HintPath>
     </Reference>
   </ItemGroup>
 	
