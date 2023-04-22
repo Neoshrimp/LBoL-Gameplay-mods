@@ -161,7 +161,7 @@ namespace BanList
 
         static List<string> banList = new List<string>();
 
-        static List<string> restrictList = new List<string>();
+        static List<string> upgradeRestrictList = new List<string>();
 
 
 
@@ -170,7 +170,9 @@ namespace BanList
 
             try
             {
-                var filePath = Path.Combine(BepInEx.Bootstrap.Chainloader.PluginInfos[GUID].Location, "BanList.yaml");
+                var filePath = Path.Combine(Path.GetDirectoryName(BepInEx.Bootstrap.Chainloader.PluginInfos[GUID].Location), "BanList.yaml");
+
+                log.LogDebug(filePath);
                 using FileStream stream = new FileStream(filePath, FileMode.Open);
 
                 using var reader = new StreamReader(stream, encoding: System.Text.Encoding.UTF8);
@@ -183,7 +185,7 @@ namespace BanList
                     var yamlObject = deserializer.Deserialize<Dictionary<string, List<string>>>(text);
 
                     banList = yamlObject["Banlist"];
-                    restrictList = yamlObject["RestrictList"];
+                    upgradeRestrictList = yamlObject["UpgradeRestrictList"];
 
                 }
                 catch (Exception ex)
@@ -224,7 +226,7 @@ namespace BanList
                     }
                 }
 
-                foreach (var id in restrictList)
+                foreach (var id in upgradeRestrictList)
                 {
                     var cc = CardConfig.FromId(id);
                     if (cc != null)

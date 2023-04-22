@@ -1,7 +1,21 @@
 Banlist:
-    MeihongPower
-    RainbowMarket
-RestrictList:
-    HuanxiangTouying
-    EventHorizon
-    UpgradePotion
+    - MeihongPower
+    - RainbowMarket
+UpgradeRestrictList:
+    - HuanxiangTouying
+    - EventHorizon
+    - UpgradePotion
+    - OpenUniverse
+    - SolarSystem
+    - HuoliQuankai
+    - ChargingPotion
+    - TimeWalk
+    - SakuyaDio
+    - DangerousMagician
+    - ShenziWake
+    - YuetuInvincible
+    - GrimoireStudy
+    - TrueMoon
+    - YongyiAttack
+    - KongMana
+    - MoonWorld
