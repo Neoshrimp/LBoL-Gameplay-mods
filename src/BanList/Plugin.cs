@@ -9,8 +9,7 @@ using System.IO;
 using UnityEngine;
 using YamlDotNet.Serialization;
 using TMPro;
-
-
+using System.Linq;
 
 namespace BanList
 {
@@ -71,7 +70,6 @@ namespace BanList
             {
                 var filePath = Path.Combine(Path.GetDirectoryName(BepInEx.Bootstrap.Chainloader.PluginInfos[GUID].Location), "BanList.yaml");
 
-                log.LogDebug(filePath);
                 using FileStream stream = new FileStream(filePath, FileMode.Open);
 
                 using var reader = new StreamReader(stream, encoding: System.Text.Encoding.UTF8);
@@ -83,8 +81,10 @@ namespace BanList
                     var deserializer = new DeserializerBuilder().Build();
                     var yamlObject = deserializer.Deserialize<Dictionary<string, List<string>>>(text);
 
-                    banList = yamlObject["Banlist"];
-                    upgradeRestrictList = yamlObject["UpgradeRestrictList"];
+                    if(yamlObject["Banlist"] != null)
+                        banList = yamlObject["Banlist"];
+                    if(yamlObject["UpgradeRestrictList"] != null)
+                        upgradeRestrictList = yamlObject["UpgradeRestrictList"];
 
                 }
                 catch (Exception ex)
