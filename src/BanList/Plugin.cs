@@ -103,7 +103,7 @@ namespace BanList
             }
         }
 
-        // oddly late injection point but it works
+        // oddly late hook point but it works
         [HarmonyPatch(typeof(ResourcesHelper), nameof(ResourcesHelper.InitializeAsync))]
         [HarmonyPriority(Priority.Low)]
         class CardConfig_Patch
