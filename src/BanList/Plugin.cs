@@ -10,6 +10,7 @@ using UnityEngine;
 using YamlDotNet.Serialization;
 using TMPro;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace BanList
 {
@@ -103,14 +104,15 @@ namespace BanList
             }
         }
 
-        // oddly late hook point but it works
-        [HarmonyPatch(typeof(ResourcesHelper), nameof(ResourcesHelper.InitializeAsync))]
+        // guarantees configs are changed after vanilla loading AND after entity sideloader 
+        [HarmonyPatch(typeof(GameEntry), nameof(GameEntry.InitializeRestAsync))]
         [HarmonyPriority(Priority.Low)]
         class CardConfig_Patch
         {
 
-            public static void Postfix()
+            static public async void Postfix(Task __result)
             {
+                await __result;
 
                 LoadAndParseYaml();
 

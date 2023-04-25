@@ -1,0 +1,6 @@
+SuikaBigball:
+  NonbattleDescription: "Deal {UIDamage} damage. Then, deal half the damage dealt to\
+    \ each other enemy.\nLose {Value1} |Firepower|."
+  Description: "Deal {UIDamage} damage. Then, deal {HalfDamage} damage to each other\
+    \ enemy.\nLose {Value1} |Firepower|."
+  Name: Oni Spirit Bomb
