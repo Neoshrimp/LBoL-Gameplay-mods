@@ -46,7 +46,7 @@ namespace VanillaTweaks
         {
             var locFiles = new LocalizationFiles(Plugin.embeddedSource);
 
-            locFiles.AddLocaleFile(Locale.En, "SuikaBigballEn.yaml");
+            locFiles.AddLocaleFile(Locale.En, "SuikaBigballEn");
 
             return locFiles;
         }
