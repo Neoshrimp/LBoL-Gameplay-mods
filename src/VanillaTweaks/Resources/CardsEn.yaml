@@ -4,3 +4,10 @@ SuikaBigball:
   Description: "Deal {UIDamage} damage. Then, deal {HalfDamage} damage to each other\
     \ enemy.\nLose {Value1} |Firepower|."
   Name: Oni Spirit Bomb
+
+# preserving current description in case it's changed
+FairyTree:
+  Description: When a skill card enters the hand for the first time each turn, gain
+    {Mana} and draw {Value1} card{Value1:plural one='' other='s'}.
+  Name: Fairies' Abode
+

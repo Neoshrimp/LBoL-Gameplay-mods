@@ -117,7 +117,7 @@ using Untitled.ConfigDataBuilder.Base;
 using Debug = UnityEngine.Debug;
 
 
-namespace PluginNamespace
+namespace HelpMeErin
 {
     [BepInPlugin(GUID, "Help me, Eirin!", version)]
     [BepInProcess("LBoL.exe")]

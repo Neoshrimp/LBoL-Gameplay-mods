@@ -44,11 +44,13 @@ namespace VanillaTweaks
 
         public override LocalizationOption LoadText()
         {
-            var locFiles = new LocalizationFiles(Plugin.embeddedSource);
+            var globalLoc = new GlobalLocalization(Plugin.embeddedSource);
 
-            locFiles.AddLocaleFile(Locale.En, "SuikaBigballEn");
 
-            return locFiles;
+
+            globalLoc.LocalizationFiles.AddLocaleFile(Locale.En, "CardsEn.yaml");
+
+            return globalLoc;
         }
 
         [DontOverwrite]
@@ -66,7 +68,7 @@ namespace VanillaTweaks
 
         // bunch of bullshit to make tooltip damage number display correctly
         // removes general damage calculation for SuikaBigball since it's already done in the properties
-        [HarmonyPatch(typeof(Card.CardFormatWrapper), "FormatArgument")]
+        [HarmonyPatch(typeof(Card.CardFormatWrapper), nameof(Card.CardFormatWrapper.FormatArgument))]
         class CardFormatWrapper_Patch
         {
             static bool Prefix(object arg, string format, ref string __result, Card.CardFormatWrapper __instance)
@@ -99,7 +101,7 @@ namespace VanillaTweaks
 
             static IEnumerable<MethodBase> TargetMethods()
             {
-                yield return AccessTools.Method(typeof(Card.CardFormatWrapper), "Format");
+                yield return AccessTools.Method(typeof(Card.CardFormatWrapper), nameof(Card.CardFormatWrapper.Format));
             }
 
 

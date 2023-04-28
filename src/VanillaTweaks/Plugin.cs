@@ -122,8 +122,9 @@ using Debug = UnityEngine.Debug;
 namespace VanillaTweaks
 {
     [BepInPlugin(GUID, "Vanilla Tweaks", version)]
-    [BepInProcess("LBoL.exe")]
     [BepInDependency(LBoLEntitySideloader.PluginInfo.GUID, BepInDependency.DependencyFlags.HardDependency)]
+    [BepInDependency(AddWatermark.API.GUID, BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInProcess("LBoL.exe")]
     public class Plugin : BaseUnityPlugin
     {
         public const string GUID = "neo.lbol.gameplay.vanillaTweaks";
@@ -147,6 +148,9 @@ namespace VanillaTweaks
             EntityManager.RegisterSelf();
 
             harmony.PatchAll();
+
+            if (BepInEx.Bootstrap.Chainloader.PluginInfos.ContainsKey(AddWatermark.API.GUID))
+                WatermarkWrapper.ActivateWatermark();
 
         }
 
