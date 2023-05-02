@@ -38,7 +38,7 @@ namespace VanillaTweaks
             return null;
         }
 
-        public override LocalizationOption LoadText()
+        public override LocalizationOption LoadLocalization()
         {
             return new GlobalLocalization();
         }
@@ -75,7 +75,7 @@ namespace VanillaTweaks
             return ResourceLoader.LoadSprite("FairyTreeSe.png", embeddedSource);
         }
 
-        public override LocalizationOption LoadText()
+        public override LocalizationOption LoadLocalization()
         {
             var globalLoc = new GlobalLocalization(embeddedSource);
 

@@ -10,4 +10,3 @@ FairyTree:
   Description: When a skill card enters the hand for the first time each turn, gain
     {Mana} and draw {Value1} card{Value1:plural one='' other='s'}.
   Name: Fairies' Abode
-

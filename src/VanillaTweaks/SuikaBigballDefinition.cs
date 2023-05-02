@@ -42,7 +42,7 @@ namespace VanillaTweaks
             return null;
         }
 
-        public override LocalizationOption LoadText()
+        public override LocalizationOption LoadLocalization()
         {
             var globalLoc = new GlobalLocalization(Plugin.embeddedSource);
 
