@@ -42,7 +42,6 @@ namespace GunToolCard
             var locFiles = new LocalizationFiles(embeddedSource);
 
 
-
             locFiles.AddLocaleFile(Locale.En, "CardsEn");
 
 

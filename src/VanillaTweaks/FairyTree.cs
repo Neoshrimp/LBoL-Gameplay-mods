@@ -22,16 +22,23 @@ using LBoL.EntityLib.StatusEffects.Cirno;
 
 namespace VanillaTweaks
 {
-
+    // indicates that this definition should be used to replace existing entity
+    // the intention is to change the effect of ability but card applying the ability needs to be changed as well
+    // to make sure that it's applying not the original effect but the modified one.
+    // Overwriting status effects is a troublesome task. It's usually simple enough if status effect is a
+    // particular ability with all its logic contained within a single type (i.e. NOT like MinengZhuruSe).
+    // Overwriting logic of generic effects like Graze or Firepower is unsuitable task for Sideloader
+    // and should be done using Harmony patches
     [OverwriteVanilla]
     public sealed class FairyTreeCardDefinition : CardTemplate
     {
         public override IdContainer GetId()
         {
+            // must return the Id of the entity which is going to be overwritten
             return nameof(LBoL.EntityLib.Cards.Character.Cirno.FairyTree);
-
         }
 
+        // don't overwrite attribute makes the Sideloader ignore the method and leave the entity component the same
         [DontOverwrite]
         public override CardImages LoadCardImages()
         {
@@ -40,7 +47,7 @@ namespace VanillaTweaks
 
         public override LocalizationOption LoadLocalization()
         {
-            return new GlobalLocalization();
+            return new GlobalLocalization(embeddedSource);
         }
 
         [DontOverwrite]
@@ -49,6 +56,9 @@ namespace VanillaTweaks
             return null;
         }
 
+
+        // logic type cannot have DontOverwrite attribute but preventing overwrite of entity logic
+        // can be achieved by simply not writing the entity logic type or not specifying it with EntityLogic attribute
         [EntityLogic(typeof(FairyTreeCardDefinition))]
         public sealed class FairyTree : Card
         {
