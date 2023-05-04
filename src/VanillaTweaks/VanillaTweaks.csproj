@@ -23,7 +23,7 @@
 
 
     <ItemGroup>
-        <EmbeddedResource Include="Resources\*" />
+        <EmbeddedResource Include="Resources\**" />
     </ItemGroup>
 
 
