@@ -1,5 +1,7 @@
 ### Vanilla Tweaks
 
+[Download](https://github.com/Neoshrimp/LBoL-Gameplay-mods/raw/master/src/VanillaTweaks/VanillaTweaks.dll)
+
 Various small changes to make some vanilla stuff more interesting.
 
 #### Stuff changed
