@@ -47,6 +47,13 @@ namespace ReasonableRequests
                 harmony.UnpatchSelf();
         }
 
+        public static MethodInfo InnerMoveNext(Type type, string methodName)
+        {
+            var enumType = type.GetNestedTypes(AccessTools.allDeclared).Where(t => t.Name.Contains($"<{methodName}>")).Single();
+
+            return AccessTools.Method(enumType, "MoveNext");
+        }
+
 
 
         [HarmonyPatch]
@@ -91,6 +98,7 @@ namespace ReasonableRequests
                 {
                     if (ci.opcode == OpCodes.Stloc_0 && prevCi?.opcode == OpCodes.Ldloc_1)
                     {
+                        log.LogDebug("inject");
                         yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Longnight_Patch), nameof(Longnight_Patch.CheckAndCreateLongnight)));
 
 
