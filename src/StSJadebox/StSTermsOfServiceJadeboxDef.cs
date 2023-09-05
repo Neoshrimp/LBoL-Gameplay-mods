@@ -24,7 +24,6 @@ using static LBoLEntitySideloader.Entities.CardTemplate;
 using static StSJadebox.BepinexPlugin;
 using static StSStuffMod.StSCoffeeDripperDef;
 using static StSStuffMod.StSFusionHammerDef;
-using static StSStuffMod.StSSacredBarkDef;
 using static StSStuffMod.StSSozuDef;
 
 namespace StSJadebox
@@ -40,7 +39,7 @@ namespace StSJadebox
         {
             return new DirectLocalization(new Dictionary<string, object>() {
                 { "Name", "Terms of Service" },
-                { "Description", "Lose your starting Exhibit. Gain |Coffee Dripper|, |Fussion Hammer| and |Sozu|."}
+                { "Description", "Lose your starting Exhibit. Gain |Fussion Hammer|, |Coffee Dripper| and |Sozu|."}
             });
         }
 
@@ -163,11 +162,13 @@ namespace StSJadebox
 
         private IEnumerator GainExhibits(GameRunController gameRun)
         {
-
-            foreach (var et in new Type[] { typeof(StSCoffeeDripper), typeof(StSFusionHammer), typeof(StSSozu) })
+            var stsExhibits = new HashSet<Type> { typeof(StSFusionHammer), typeof(StSCoffeeDripper), typeof(StSSozu) };
+            foreach (var et in stsExhibits)
             { 
                 yield return gameRun.GainExhibitRunner(Library.CreateExhibit(et));
             }
+
+            gameRun.ExhibitPool.RemoveAll(e => stsExhibits.Contains(e));
         }
     }
 

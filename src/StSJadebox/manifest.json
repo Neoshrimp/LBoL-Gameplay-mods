@@ -1,6 +1,6 @@
 {
   "name": "StS_Jadebox",
-  "version_number": "0.5.0",
+  "version_number": "0.5.1",
   "website_url": "https://github.com/Neoshrimp/LBoL-Gameplay-mods/tree/master/src/StSJadebox",
   "description": "Jadebox(es) for StS mod.",
   "dependencies": [ "BepInEx-BepInExPack-5.4.2100", "TeamNeo-Sideloader-0.5.0", "IntoxicatedKid-StS_Stuff_Mod-1.0.3" ]
