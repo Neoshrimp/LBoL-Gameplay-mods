@@ -17,7 +17,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GunToolCard", "src\GunToolC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReasonableRequests", "src\ReasonableRequests\ReasonableRequests.csproj", "{7DD69687-FA98-4E8F-82E5-DF12CC920F3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StSJadebox", "src\StSJadebox\StSJadebox.csproj", "{56F3333E-1224-4327-9CBF-16729773012D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StSJadebox", "src\StSJadebox\StSJadebox.csproj", "{56F3333E-1224-4327-9CBF-16729773012D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonOnly", "src\CommonOnly\CommonOnly.csproj", "{D4703041-40EE-4A12-93E3-81346F1D1ED3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UncappedJadeboxes", "src\UncappedJadeboxes\UncappedJadeboxes.csproj", "{788393A8-9122-4086-940A-EA5385CD2590}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +61,14 @@ Global
 		{56F3333E-1224-4327-9CBF-16729773012D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56F3333E-1224-4327-9CBF-16729773012D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56F3333E-1224-4327-9CBF-16729773012D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4703041-40EE-4A12-93E3-81346F1D1ED3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4703041-40EE-4A12-93E3-81346F1D1ED3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4703041-40EE-4A12-93E3-81346F1D1ED3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4703041-40EE-4A12-93E3-81346F1D1ED3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{788393A8-9122-4086-940A-EA5385CD2590}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{788393A8-9122-4086-940A-EA5385CD2590}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{788393A8-9122-4086-940A-EA5385CD2590}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{788393A8-9122-4086-940A-EA5385CD2590}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
