@@ -40,7 +40,6 @@ namespace UncappedJadeboxes
 
 
         [HarmonyPatch(typeof(StartGamePanel), nameof(StartGamePanel.RefreshJadeBoxIcon))]
-        [HarmonyDebug]
         class RefreshJadeBoxIcon_Patch
         {
 
