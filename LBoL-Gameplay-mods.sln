@@ -21,7 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StSJadebox", "src\StSJadebo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonOnly", "src\CommonOnly\CommonOnly.csproj", "{D4703041-40EE-4A12-93E3-81346F1D1ED3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UncappedJadeboxes", "src\UncappedJadeboxes\UncappedJadeboxes.csproj", "{788393A8-9122-4086-940A-EA5385CD2590}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UncappedJadeboxes", "src\UncappedJadeboxes\UncappedJadeboxes.csproj", "{788393A8-9122-4086-940A-EA5385CD2590}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProfileCreateHotfix", "src\ProfileCreateHotfix\ProfileCreateHotfix.csproj", "{B9FABFC7-2D1E-4497-826D-51B0E3519763}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,10 @@ Global
 		{788393A8-9122-4086-940A-EA5385CD2590}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{788393A8-9122-4086-940A-EA5385CD2590}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{788393A8-9122-4086-940A-EA5385CD2590}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9FABFC7-2D1E-4497-826D-51B0E3519763}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9FABFC7-2D1E-4497-826D-51B0E3519763}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9FABFC7-2D1E-4497-826D-51B0E3519763}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9FABFC7-2D1E-4497-826D-51B0E3519763}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
