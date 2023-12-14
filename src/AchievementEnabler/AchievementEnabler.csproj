@@ -304,7 +304,10 @@
         </Reference>
         <Reference Include="UnityEngine.UnityEngine.ParticleSystemModule">
             <HintPath>$(GameFolder)\LBoL_Data\Managed\UnityEngine.ParticleSystemModule.dll</HintPath>
-        </Reference>	
+        </Reference>
+        <Reference Include="Unity.TextMeshPro">
+            <HintPath>$(GameFolder)\LBoL_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+        </Reference>
     </ItemGroup>
 
 

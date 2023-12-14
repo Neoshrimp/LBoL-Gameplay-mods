@@ -133,6 +133,21 @@ namespace AchievementEnabler
             return matcher.InstructionEnumeration();
         }
     }
-    
+
+
+
+    [HarmonyPatch(typeof(StartGamePanel), nameof(StartGamePanel.SetNoClearHint))]
+    class StartGamePanel_Hint_Patch
+    {
+
+        static void Postfix(StartGamePanel __instance)
+        {
+            __instance.noClearHint.gameObject.SetActive(__instance._setSeed);
+            __instance.noClearHint.text = __instance.noClearHint.text.Replace(" or Jade Box", "");
+        }
+    }
+
+
+
 
 }
