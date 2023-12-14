@@ -26,12 +26,12 @@ Refine Potion\
 Open Universe\
 Orrery's Sun\
 All Out\
-Radioactive Elements\
+Radioactive Elements
 
 Sakuya:\
 Time Walk\
 You Are Next\
-Dangerous Illusionist\
+Dangerous Illusionist
 
 Neutral:\
 Revive The Saint\

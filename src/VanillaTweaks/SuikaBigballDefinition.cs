@@ -81,7 +81,7 @@ namespace VanillaTweaks
                     }
                     var propName = stringWrap?.s;
 
-                    // getter name is required to know if formatter is formatting main or shochwave dmg number. Depending on difference between base dmg and actual damage number will be coloured differently
+                    // getter name is required to know if formatter is formatting main or shockwave dmg number. Depending on difference between base dmg and actual damage number will be coloured differently
                     var baseDmg = propName == null || propName == nameof(SuikaBigball.UIDamage) ? (int)suika.Damage.Damage : (int)(suika.Damage.Damage * suika.mult);
 
 
