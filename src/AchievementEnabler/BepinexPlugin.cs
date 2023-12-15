@@ -34,7 +34,7 @@ namespace AchievementEnabler
             harmony.PatchAll();
 
             if(isDebugConfig.Value)
-                log.LogDebug($"UnlockAchievement calls patched: {DisableJadeboxCheck_Patch.totalACount}, v1.4 + 12 for char clears, + 11 for boss kills, + 1 for clear with jadebox, + 1 for Rumia, total achievements: {Enum.GetNames(typeof(AchievementKey)).Length} ");
+                log.LogDebug($"UnlockAchievement calls patched: {DisableJadeboxCheck_Patch.totalACount}, v1.4 + 12 for char clears, + 11 for boss kills, + 1 for clear with jadebox, + 1 for Rumia = {DisableJadeboxCheck_Patch.totalACount + 12 + 11 + 1 + 1}, total achievements: {Enum.GetNames(typeof(AchievementKey)).Length}");
 
         }
 
