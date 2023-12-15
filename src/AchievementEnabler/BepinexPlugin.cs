@@ -19,6 +19,9 @@ namespace AchievementEnabler
 
         internal static BepInEx.Configuration.ConfigEntry<bool> isDebugConfig;
 
+        internal static BepInEx.Configuration.ConfigEntry<bool> isExtraDebugConfig;
+
+
 
 
         private void Awake()
@@ -30,6 +33,9 @@ namespace AchievementEnabler
             gameObject.hideFlags = HideFlags.HideAndDontSave;
 
             isDebugConfig = Config.Bind("Main", "CheckAchievementCount", false);
+
+            isExtraDebugConfig = Config.Bind("Main", "DetailedDebug", false);
+
 
             harmony.PatchAll();
 

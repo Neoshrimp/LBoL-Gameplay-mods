@@ -125,7 +125,8 @@ namespace AchievementEnabler
                         loop = false;
                     }                
                 }
-                log.LogDebug($"{original.FullDescription()} achievement count: {aCount}");
+                if (isExtraDebugConfig.Value)
+                    log.LogDebug($"{original.FullDescription()} achievement count: {aCount}");
                 totalACount += aCount;
                 // v1.4 -3*4 char achievs - 1 rumia
             }
