@@ -60,12 +60,12 @@ namespace StSJadebox
             {
 
                 var gr = GameMaster.Instance.CurrentGameRun;
-                IReadOnlyList<JadeBox> jadeBox =  gr.JadeBox;
+                IReadOnlyList<JadeBox> jadeBox =  gr.JadeBoxes;
                 
 
                 if (jadeBox != null && jadeBox.Count > 0)
                 {
-                    if (gr.JadeBox.Any((JadeBox jb) => jb is StSCursedManaJadebox))
+                    if (gr.JadeBoxes.Any((JadeBox jb) => jb is StSCursedManaJadebox))
                     {
 
                         var Eirin = GameDirector.Enemies[0];
