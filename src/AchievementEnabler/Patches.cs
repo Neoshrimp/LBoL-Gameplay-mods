@@ -39,7 +39,7 @@ namespace AchievementEnabler
         static IEnumerable<MethodBase> TargetMethods()
         {
 
-            yield return Method(typeof(UseCardAction).GetNestedTypes(AccessTools.allDeclared).Single(t => t.Name.Contains("DisplayClass16_0")), "<GetPhases>b__4");
+            yield return Method(typeof(UseCardAction).GetNestedTypes(AccessTools.allDeclared).Single(t => t.Name.Contains("DisplayClass17_0")), "<GetPhases>b__4");
             yield return Method(typeof(BattleController), "GainMana");
             yield return Method(typeof(BattleController), nameof(BattleController.RecordCardUsage));
             yield return Method(typeof(Firepower), "CheckAchievement");
