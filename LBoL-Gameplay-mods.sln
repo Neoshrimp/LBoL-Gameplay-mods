@@ -25,7 +25,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UncappedJadeboxes", "src\Un
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProfileCreateHotfix", "src\ProfileCreateHotfix\ProfileCreateHotfix.csproj", "{B9FABFC7-2D1E-4497-826D-51B0E3519763}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AchievementEnabler", "src\AchievementEnabler\AchievementEnabler.csproj", "{11742A24-2026-4EB0-9131-8ADE4F67E5CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AchievementEnabler", "src\AchievementEnabler\AchievementEnabler.csproj", "{11742A24-2026-4EB0-9131-8ADE4F67E5CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CharSwapDemo", "src\CharSwapDemo\CharSwapDemo.csproj", "{BB14CB54-E6EA-45CA-A8E2-3E53BC5D23C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +83,10 @@ Global
 		{11742A24-2026-4EB0-9131-8ADE4F67E5CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11742A24-2026-4EB0-9131-8ADE4F67E5CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11742A24-2026-4EB0-9131-8ADE4F67E5CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB14CB54-E6EA-45CA-A8E2-3E53BC5D23C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB14CB54-E6EA-45CA-A8E2-3E53BC5D23C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB14CB54-E6EA-45CA-A8E2-3E53BC5D23C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB14CB54-E6EA-45CA-A8E2-3E53BC5D23C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

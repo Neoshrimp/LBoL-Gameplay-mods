@@ -13,6 +13,8 @@ using LBoL.EntityLib.Adventures.Stage3;
 using LBoL.EntityLib.Cards.Character.Marisa;
 using LBoL.EntityLib.Cards.Character.Sakuya;
 using LBoL.EntityLib.StatusEffects.Cirno;
+using LBoL.EntityLib.StatusEffects.Enemy.Seija;
+using LBoL.EntityLib.StatusEffects.Koishi;
 using LBoL.EntityLib.StatusEffects.Sakuya;
 using LBoL.Presentation;
 using LBoL.Presentation.UI.Panels;
@@ -62,6 +64,14 @@ namespace AchievementEnabler
             yield return EnumeratorMoveNext(Method(typeof(GameDirector), nameof(GameDirector.InternalDieViewer)));
             yield return EnumeratorMoveNext(Method(typeof(GameDirector), nameof(GameDirector.StatisticalTotalDamageViewer)));
 
+            //post Koishi
+            yield return EnumeratorMoveNext(Method(typeof(MoodEpiphany), nameof(MoodEpiphany.OnCardUsed)));
+            yield return Method(typeof(DragonBallSe), nameof(DragonBallSe.OnOwnerDying));
+            yield return Method(typeof(FrostArmor), nameof(FrostArmor.CheckAchievement));
+            yield return Method(typeof(BattleController), nameof(BattleController.RecordCardPlay));
+            yield return Method(typeof(MoodChangeAction.MoodChangeAchievementCounter), nameof(MoodChangeAction.MoodChangeAchievementCounter.Increase));
+
+
         }
 
         public static int totalACount = 0;
@@ -72,10 +82,10 @@ namespace AchievementEnabler
             var matcher = new CodeMatcher(instructions, generator);
             matcher = matcher.MatchForward(true, new CodeMatch[] { new CodeInstruction(OpCodes.Callvirt, PropertyGetter(typeof(GameRunController), nameof(GameRunController.IsAutoSeed))), OpCodes.Brfalse });
 
-            Action<CodeMatch[]> findJadeboxCheck = (lookFor) => {
-                matcher = matcher
-                    .MatchForward(true, lookFor
-                        )
+            Action<CodeMatch[]> findAndNeuterJadeboxCheck = (lookFor) => {
+                matcher = matcher.MatchForward(true, lookFor);
+                if(matcher.IsValid)
+                    matcher
                     .MatchForward(false, new CodeMatch(OpCodes.Brfalse))
                     .Set(OpCodes.Pop, null);
             };
@@ -91,13 +101,18 @@ namespace AchievementEnabler
                         new CodeInstruction(OpCodes.Call, Method(typeof(CollectionsExtensions), "Empty").MakeGenericMethod(new Type[] { typeof(string) }))
                         };
 
+            CodeMatch[] matchFor = null;
+            if (original == Method(typeof(GameMaster), nameof(GameMaster.SaveProfileWithEndingGameRun)))
+                matchFor = specialCase;
+            else
+                matchFor = usualCase;
+
             try
             {
-                if (original == Method(typeof(GameMaster), nameof(GameMaster.SaveProfileWithEndingGameRun)))
-                    findJadeboxCheck(specialCase);
-                else
-                    findJadeboxCheck(usualCase);
-                
+                while (matcher.IsValid)
+                {
+                    findAndNeuterJadeboxCheck(matchFor);
+                }
             }
             catch (Exception ex)
             {
@@ -105,8 +120,14 @@ namespace AchievementEnabler
             }
             int aCount = 0;
             bool loop = true;
-            if (isDebugConfig.Value)
+
+
+            if (IsDebugConfig)
             { 
+                matcher.Start();
+                if(IsExtraDebugConfig)
+                    log.LogDebug($"{original.FullDescription()}");
+
                 while (loop)
                 {
                     try
@@ -118,6 +139,11 @@ namespace AchievementEnabler
                         )
                             .Advance(1)
                             .ThrowIfInvalid("deez");
+
+                        var argIns = matcher.InstructionAt(-2);
+                        if (argIns.operand is sbyte aIndex && IsExtraDebugConfig)
+                            log.LogDebug((AchievementKey)aIndex);
+
                         aCount++;
                     }
                     catch (Exception ex)
@@ -125,10 +151,10 @@ namespace AchievementEnabler
                         loop = false;
                     }                
                 }
-                if (isExtraDebugConfig.Value)
-                    log.LogDebug($"{original.FullDescription()} achievement count: {aCount}");
+                if(IsExtraDebugConfig)
+                    log.LogDebug($"achievement count: {aCount}");
+
                 totalACount += aCount;
-                // v1.4 -3*4 char achievs - 1 rumia
             }
 
             return matcher.InstructionEnumeration();

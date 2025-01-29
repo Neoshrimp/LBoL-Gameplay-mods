@@ -1,4 +1,5 @@
 ﻿using BepInEx;
+using BepInEx.Configuration;
 using HarmonyLib;
 using LBoL.Core;
 using System;
@@ -17,12 +18,12 @@ namespace AchievementEnabler
 
         internal static BepInEx.Logging.ManualLogSource log;
 
-        internal static BepInEx.Configuration.ConfigEntry<bool> isDebugConfig;
+        private static BepInEx.Configuration.ConfigEntry<bool> isDebugConfig;
 
-        internal static BepInEx.Configuration.ConfigEntry<bool> isExtraDebugConfig;
+        private static BepInEx.Configuration.ConfigEntry<bool> isExtraDebugConfig;
 
-
-
+        internal static bool IsDebugConfig { get => isDebugConfig.Value; }
+        internal static bool IsExtraDebugConfig { get => isExtraDebugConfig.Value; }
 
         private void Awake()
         {
@@ -39,8 +40,8 @@ namespace AchievementEnabler
 
             harmony.PatchAll();
 
-            if(isDebugConfig.Value)
-                log.LogDebug($"UnlockAchievement calls patched: {DisableJadeboxCheck_Patch.totalACount}, v1.4 + 12 for char clears, + 11 for boss kills, + 1 for clear with jadebox, + 1 for Rumia = {DisableJadeboxCheck_Patch.totalACount + 12 + 11 + 1 + 1}, total achievements: {Enum.GetNames(typeof(AchievementKey)).Length}");
+            if(IsDebugConfig)
+                log.LogInfo($"UnlockAchievement calls counted: {DisableJadeboxCheck_Patch.totalACount} (includes finish with JB achievement), v1.6 + 12 for char clears, + 11 for boss kills, + 1 for Mystia, + 1 for Rumia(doesn't check JB) = {DisableJadeboxCheck_Patch.totalACount + 12 + 11 + 1 + 1}, total achievements: {Enum.GetNames(typeof(AchievementKey)).Length}");
 
         }
 
