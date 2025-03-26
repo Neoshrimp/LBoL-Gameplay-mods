@@ -65,11 +65,14 @@ namespace AchievementEnabler
             yield return EnumeratorMoveNext(Method(typeof(GameDirector), nameof(GameDirector.StatisticalTotalDamageViewer)));
 
             //post Koishi
-            yield return EnumeratorMoveNext(Method(typeof(MoodEpiphany), nameof(MoodEpiphany.OnCardUsed)));
             yield return Method(typeof(DragonBallSe), nameof(DragonBallSe.OnOwnerDying));
             yield return Method(typeof(FrostArmor), nameof(FrostArmor.CheckAchievement));
-            yield return Method(typeof(BattleController), nameof(BattleController.RecordCardPlay));
+            // koishi mechanics
+            yield return EnumeratorMoveNext(Method(typeof(MoodEpiphany), nameof(MoodEpiphany.OnCardUsed)));
             yield return Method(typeof(MoodChangeAction.MoodChangeAchievementCounter), nameof(MoodChangeAction.MoodChangeAchievementCounter.Increase));
+            yield return Method(typeof(BattleController), nameof(BattleController.RecordCardPlay));
+            // 1.7.0
+            // ...? nothing
 
 
         }
